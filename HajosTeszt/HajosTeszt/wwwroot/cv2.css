@@ -1,0 +1,134 @@
+﻿body {
+}
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-weight: bold;
+    text-align: left;
+}
+
+#tarto, #menu, #sulik, #munka, #egyebek {
+    padding: 20px
+}
+
+
+
+
+.zold {
+    color: #1FDE40;
+}
+
+h1, h2, h3 {
+    text-align: center;
+}
+
+.link {
+    padding: 5px;
+    border-radius: 5px;
+    background-color: forestgreen;
+    color: whitesmoke;
+}
+
+a:visited {
+    color: darkred;
+}
+
+a {
+    color: blue;
+    background-color: forestgreen;
+    border-radius: 3px;
+}
+
+    a:hover {
+        background-color: darkblue;
+        color: whitesmoke;
+        border-radius: 3px;
+        padding: 5px;
+    }
+
+.kozepre {
+    align-self: center
+}
+
+
+
+
+
+#sulik {
+    background-color: forestgreen;
+}
+
+.nev {
+    color: forestgreen;
+    font-size: 30px;
+    font-style: italic;
+}
+
+img {
+    display: block;
+    margin: auto;
+}
+
+#BME {
+    font-size: 150px;
+    color: fuchsia;
+    font-style: italic;
+}
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-weight: bold;
+    text-align: left;
+}
+
+#tarto, #menu, #sulik, #munka, #egyebek{
+    padding: 20px
+}
+
+
+
+#munka {
+    background-color: forestgreen;
+}
+
+#menu {
+    background-color: limegreen;
+}
+
+#egyebek {
+    background-color: lightgreen;
+}
+
+
+
+
+
+@media screen and (min-width: 800px) {
+    body {
+        display: flex;
+        flex-direction: column;
+        max-width: 1500px;
+        margin: auto;
+    }
+
+    #tarto {
+        display: flex;
+        
+    }
+
+    #sulik, #menu, #munka {
+        order: -1;
+    }
+
+    #sulik {
+        flex: 1 1 75%;
+    }
+
+    #munka {
+        flex: 1 1 25%;
+    }
+}
