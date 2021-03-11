@@ -1,0 +1,52 @@
+﻿body {
+    height: 100%;
+}
+div{
+    margin: 10px;
+    border: 2px solid forestgreen;
+    border-radius:4px;
+    
+}
+#külső {
+    height: 100%;
+    flex-direction: column;
+    display:flex;
+}
+#középső {
+    display: flex;
+    flex-direction: row;
+    flex-grow:1;
+}
+#válaszok {
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+#kép {
+    overflow: hidden;
+    
+    flex-shrink: 0;
+}
+#vezérlő {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.gomb {
+    padding: 20px;
+    width: 80px;
+}
+.kattintható:hover {
+    background-color: fuchsia;
+    color: white;
+    cursor:pointer;
+}   
+.jó{
+    color:white;
+    background-color:green;
+}
+
+.rossz {
+    color: white;
+    background-color: red;
+}
