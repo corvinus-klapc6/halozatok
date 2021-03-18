@@ -1,0 +1,29 @@
+﻿body {
+}
+.elem {
+    height: 30px;
+    width: 30px;
+    
+}
+#ide {
+    display: flex;
+    flex-direction: row;
+}
+#Pascaltarto {
+    display: flex;
+    flex-direction: column;
+}
+.sor {
+    display: flex;
+    flex-direction: row;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+
+.elem1 {
+    height: 50px;
+    width: 50px;
+    display: inline-block;
+}

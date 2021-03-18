@@ -4,4 +4,9 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\hajos.css" />
+    <None Include="wwwroot\hajos.html" />
+  </ItemGroup>
+
 </Project>
