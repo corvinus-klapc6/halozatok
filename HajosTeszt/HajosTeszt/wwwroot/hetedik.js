@@ -39,15 +39,10 @@ function kérdésMegjelenítés(kérdésszorszám) {
     megjelenítettKép.src = "https://szoft1.comeback.hu/hajo/" + kérdések[kérdésszorszám].image
     
     let válasz1 = document.getElementById("válasz1")
-
     let válasz2 = document.getElementById("válasz2")
-
     let válasz3 = document.getElementById("válasz3")
-
     válasz1.innerHTML = kérdések[kérdésszorszám].answer1
-
     válasz2.innerHTML = kérdések[kérdésszorszám].answer2
-
     válasz3.innerHTML = kérdések[kérdésszorszám].answer3
 
     jóVálasz = kérdések[kérdésszorszám].correctAnswer;
