@@ -36,11 +36,7 @@ div{
     padding: 20px;
     width: 80px;
 }
-.kattintható:hover {
-    background-color: fuchsia;
-    color: white;
-    cursor:pointer;
-}   
+   
 .jó{
     color:white;
     background-color:green;
