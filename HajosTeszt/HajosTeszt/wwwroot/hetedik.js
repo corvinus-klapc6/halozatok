@@ -1,51 +1,52 @@
-﻿window.onload = letöltések()
+﻿var holvunk = 1;
+window.onload = kérdésBetöltés(holvunk)
 
 var kérdések;
-var holvunk = 0;
+
 var kérdészekSzáma;
 var jóVálasz;
 
-function letöltések()
-{
-    fetch('/questions.json')
-        .then(response => response.json())
-        .then(data => letöltésBefejeződött(data)
-        );
-
-    function letöltésBefejeződött(d) {
-        console.log("Sikeres letöltés")
-        console.log(d)
-        kérdések = d;
-        kérdésMegjelenítés(0)
-        kérdészekSzáma = kérdések.length;
 
 
-        
-        
-    }
-    
-    
-    
-    
-};
-function kérdésMegjelenítés(kérdésszorszám) {
-    console.log(`${kérdések.length} letöltés érkezett`)
 
-    let kérdés = document.getElementById("kérdés_szöveg")
-    kérdés.innerText = kérdések[kérdésszorszám].questionText;
+function kérdésBetöltés(id) {
+    fetch(`/questions/${id}`)
+        .then(response => {
+            if (!response.ok) {
+                console.error(`Hibás válasz: ${response.status}`)
+            }
+            else {
+                return response.json()
+            }
+        })
+        .then(data => kérdésMegjelenítés(data));
+} 
+    
+
+function kérdésMegjelenítés(kérdés) {
+
+    console.log(kérdés)
+
+    let kérdésszoveg = document.getElementById("kérdés_szöveg")
+    kérdésszoveg.innerText = kérdés.questionText;
     
 
     let megjelenítettKép = document.getElementById("kép1")
-    megjelenítettKép.src = "https://szoft1.comeback.hu/hajo/" + kérdések[kérdésszorszám].image
+    if (kérdés.image == "") {
+        megjelenítettKép.src = "https://cdn.nwmgroups.hu/s/img/i/1603/201603245.jpg?w=800&h=511&t=5"
+        
+    }
+    else { megjelenítettKép.src = "https://szoft1.comeback.hu/hajo/" + kérdés.image;}
+    
     
     let válasz1 = document.getElementById("válasz1")
     let válasz2 = document.getElementById("válasz2")
     let válasz3 = document.getElementById("válasz3")
-    válasz1.innerHTML = kérdések[kérdésszorszám].answer1
-    válasz2.innerHTML = kérdések[kérdésszorszám].answer2
-    válasz3.innerHTML = kérdések[kérdésszorszám].answer3
+    válasz1.innerHTML = kérdés.answer1
+    válasz2.innerHTML = kérdés.answer2
+    válasz3.innerHTML = kérdés.answer3
 
-    jóVálasz = kérdések[kérdésszorszám].correctAnswer;
+    jóVálasz = kérdés.correctAnswer;
 
     válasz2.classList.remove("jó","rossz")
     válasz1.classList.remove("jó", "rossz")
@@ -53,29 +54,15 @@ function kérdésMegjelenítés(kérdésszorszám) {
 
     
 }
-function előre() {
-    if (holvunk == kérdészekSzáma-1) {
-        holvunk = 0;
-        kérdésMegjelenítés(holvunk)
 
-    }
-    else {
-        holvunk = holvunk + 1;
-        kérdésMegjelenítés(holvunk);
-    }
+function előre() {
+    holvunk++;
+    kérdésBetöltés(holvunk);
     
 }
 function vissza() {
-    if (holvunk == 0) {
-        holvunk = kérdészekSzáma-1
-        kérdésMegjelenítés(holvunk)
-        
-
-    }
-    else {
-        holvunk = holvunk - 1;
-        kérdésMegjelenítés(holvunk);
-    }
+    holvunk--;
+    kérdésBetöltés(holvunk);
     
 }
 function megjelöltVálasz1() {
