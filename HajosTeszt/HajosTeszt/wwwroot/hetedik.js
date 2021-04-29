@@ -38,7 +38,7 @@ function kérdésMegjelenítés(kérdés) {
     }
     else { megjelenítettKép.src = "https://szoft1.comeback.hu/hajo/" + kérdés.image;}
     
-    
+        
     let válasz1 = document.getElementById("válasz1")
     let válasz2 = document.getElementById("válasz2")
     let válasz3 = document.getElementById("válasz3")
