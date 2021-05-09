@@ -6,7 +6,7 @@ var kérdések;
 var kérdészekSzáma;
 var jóVálasz;
 var timeoutHandler;
-var myStorage = window.localStorage;
+
 
 var hotList = [];           //Az éppen gyakoroltatott kérdések listája 
 var questionsInHotList = 3; //Ez majd 7 lesz, teszteléshez jobb a 3. 
@@ -85,11 +85,32 @@ function init() {
         hotList[i] = q;
     }
 
-    //Első kérdések letöltése
-    for (var i = 0; i < questionsInHotList; i++) {
-        kérdésBetöltés(nextQuestion, i);
-        nextQuestion++;
+    
+    if (localStorage.getItem("hotlist")) {
+        hotList =JSON.parse( localStorage.getItem("hotlist"))
+
     }
+    if (localStorage.getItem("displayedQuestion")) {
+        displayedQuestion =parseInt( localStorage.getItem("displayedQuestion"))
+    }
+    if (localStorage.getItem("nextQuestion")) {
+        nextQuestion = parseInt(localStorage.getItem("nextQuestion"))
+    }
+
+    if (hotList.length === 0) {
+        //Első kérdések letöltése
+        for (var i = 0; i < questionsInHotList; i++) {
+            kérdésBetöltés(nextQuestion, i);
+            nextQuestion++;
+        }
+    }
+    else {
+        console.log("LocalStorage-ből töltöttük be az adatokat")
+        kérdésMegjelenítés();
+    }
+    
+    
+    l
 }
 
 function előre() {
@@ -136,8 +157,9 @@ function megjelöltVálasz1() {
 
     törlés();
     timeoutHandler = setTimeout(előre, 3000);
-    myStorage.clear();
-    myStorage.setItem(1, hotList)
+    localStorage.setItem("hotlist", JSON.stringify(hotList))
+    localStorage.setItem("displayedQuestion", JSON.stringify(displayedQuestion))
+    localStorage.setItem("nextQuestion", JSON.stringify(nextQuestion))
 }
 function megjelöltVálasz2() {
     let megjelöltválasz2 = document.getElementById("válasz2")
@@ -159,6 +181,10 @@ function megjelöltVálasz2() {
     timeoutHandler = setTimeout(előre, 3000);
     myStorage.clear();
     myStorage.setItem(1, hotList)
+
+    localStorage.setItem("hotlist", JSON.stringify(hotList))
+    localStorage.setItem("displayedQuestion", JSON.stringify(displayedQuestion))
+    localStorage.setItem("nextQuestion", JSON.stringify(nextQuestion))
 }
 function megjelöltVálasz3() {
 
@@ -181,6 +207,10 @@ function megjelöltVálasz3() {
     timeoutHandler = setTimeout(előre, 3000);   
     myStorage.clear();
     myStorage.setItem(1, hotList)
+
+    localStorage.setItem("hotlist", JSON.stringify(hotList))
+    localStorage.setItem("displayedQuestion", JSON.stringify(displayedQuestion))
+    localStorage.setItem("nextQuestion", JSON.stringify(nextQuestion))
 }
 
 function törlés() {
