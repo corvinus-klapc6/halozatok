@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <form>
+        <div id="jokeList"></div>
+        <div>
+            <input id="jokeText" type="text" placeholder="Csak PC vicc" />
+        </div>
+        <button id="addButton">Új vicc felvétele</button>
+        <div id="jokeSorszam">
+            <input id="jokeSorszam" type="text" placeholder="Melyik PC viccet szeretnéd?" />
+        </div>
+        <button id="searchButton">Vicc keresése</button>
+        <div id="keresettVicc">
+            
+        </div>
+    </form>
+    <script>
+        document.getElementById("addButton").addEventListener("click", () => {
+
+            //Ezt az objektumot fogjuk átküldeni
+            let data = {
+                jokeText: document.getElementById("jokeText").value
+            }
+
+
+            fetch("api/jokes",
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                }
+            ).then();
+
+        });
+
+               
+    </script>
+    <script>
+            document.getElementById("searchButton").addEventListener("click", () => {
+
+                //Ez keresi meg a vicc sorszámát
+                let ID = document.getElementById("jokeSorszam").value
+                //Ezzel szeretném berakni a megfelelő kérdés szövegét a jokeList div-be, de egyelőre nem jártam sikerrel (a baj valószínűleg a szintaktikával van, mert eddig minden sikerült)
+
+                 fetch(`api/jokes/${ID}`,
+                    {
+                        method: 'GET',
+
+                    }
+                ).then(v => { document.getElementById("jokeList").value = v.body });
+                
+            });
+    </script>
+</body>
+</html>
